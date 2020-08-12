@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Agregar Noticia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">Titulo</ion-label>
+      <ion-input [(ngModel)]="noticia.titulo"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Descripcion</ion-label>
+      <ion-input [(ngModel)]="noticia.descripcion"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Contenido</ion-label>
+      <ion-textarea rows="6" [(ngModel)]="noticia.contenido"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Fecha</ion-label>
+      <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="noticia.fecha"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Autor</ion-label>
+      <ion-select cancelText="Cancelar" okText="Confirmar" [(ngModel)]="noticia.autorID">
+        <ion-select-option [value]="autor.autorID" *ngFor="let autor of autores">
+          {{ autor.nombre }} {{ autor.apellido }}
+        </ion-select-option>        
+      </ion-select>
+    </ion-item>
+    <hr>
+    <ion-button *ngIf="!editable" expand="block" (click)="guardar()">Guardar</ion-button>
+    <ion-button *ngIf="editable" expand="block" color="warning" (click)="editar()">Editar</ion-button>
+  </ion-list>
+</ion-content>

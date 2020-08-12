@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Listado Noticias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card *ngFor="let noticia of noticias; let i = index">
+    <ion-card-header (click)="AbrirDetalle(noticia)">
+      <ion-card-subtitle>{{ noticia.descripcion }}</ion-card-subtitle>
+      <ion-card-title>{{ noticia.titulo }}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{ noticia.contenido }}
+      <p> <strong>Autor:</strong> {{noticia.autor.nombre}} {{noticia.autor.apellido}}</p>
+      <p> <strong>Fecha: </strong>{{noticia.fecha | date}}</p>
+      <hr>
+      <ion-buttons> 
+        <ion-button shape="round" fill="outline" color="warning" (click)="editar(noticia)">
+          <ion-icon name="create-outline"></ion-icon>          
+          Editar
+        </ion-button>
+        <ion-button shape="round" fill="outline" color="danger" (click)="eliminar(noticia.noticiaID, i)">
+          <ion-icon name="trash-outline"></ion-icon>
+          Eliminar
+        </ion-button>    
+      </ion-buttons>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
